@@ -13,6 +13,7 @@ import { useAuthContext } from "../../context/AuthContext.tsx";
 
 const Replies = ({ comment }: { comment: Models.Document }) => {
   const { user } = useAuthContext();
+
   const {
     isOpen: isReplyModalOpen,
     onOpen: onReplyModalOpen,
