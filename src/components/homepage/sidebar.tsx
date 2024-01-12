@@ -39,10 +39,15 @@ const Sidebar = () => {
   };
 
   const handleLogout = async () => {
+    const cookieFallback = localStorage.getItem("cookieFallback");
+    if(cookieFallback) {
     const loggedOut = await logoutUser();
+    localStorage.removeItem("cookieFallback")
     navigate("/");
+      return loggedOut;
+    }
 
-    return loggedOut;
+
   };
 
   return (
