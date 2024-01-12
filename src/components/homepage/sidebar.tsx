@@ -39,16 +39,22 @@ const Sidebar = () => {
   };
 
   const handleLogout = async () => {
-    const cookieFallback = localStorage.getItem("cookieFallback");
-    if(cookieFallback) {
-    const loggedOut = await logoutUser();
-    localStorage.removeItem("cookieFallback")
-    navigate("/");
-      return loggedOut;
+    const logout = await logoutUser()
+    if(localStorage.getItem("cookieFallback") === "[]" || localStorage.getItem("cookieFallback") === null) {
+      navigate("/")
     }
+    return logout
+  }
 
-
-  };
+  // const handleLogout = async () => {
+  //   const cookieFallback = localStorage.getItem("cookieFallback");
+  //   if(cookieFallback) {
+  //   const loggedOut = await logoutUser();
+  //   localStorage.removeItem("cookieFallback")
+  //   navigate("/");
+  //     return loggedOut;
+  //   }
+  // };
 
   return (
     <div className="w-[150px] hidden md:flex  flex-col items-center pt-[20px]  h-[100vh] border-r border-[#303033]">
