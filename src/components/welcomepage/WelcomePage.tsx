@@ -14,7 +14,7 @@ const WelcomePage = () => {
   }, []);
 
   return (
-    <div className="text-gray-200 h-[100vh] overflow-y-hidden flex flex-col items-center justify-center">
+    <div className="text-gray-200 h-[100vh] overflow-y-hidden overflow-x-hidden flex flex-col items-center justify-center">
       <div className=" lg:grid lg:grid-cols-2">
         <div className="flex flex-col justify-center items-center text-center">
           <h1 className="lg:text-[80px] md:text-[60px] text-[40px] md:my-0 my-6 ">
@@ -38,7 +38,7 @@ const WelcomePage = () => {
           </div>
         </div>
         <div className="w-full items-center hidden lg:flex">
-          <img src={sideImage} className="w-[100%] ml-20 h-[100%] rotate-12" />
+          <img src={sideImage} className="w-[100%] ml-20 h-[100%] rotate-12" alt='side-image' />
         </div>
       </div>
     </div>
