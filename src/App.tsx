@@ -20,18 +20,17 @@ const App = () => {
 
     useEffect(() => {
         const checkLoggedIn = async () => {
-            const isLoggedIn = await checkAuth();
+            const isLoggedIn = await checkAuth()
+
             if (isLoggedIn) {
-                setAuthenticated(true);
+                setAuthenticated(true)
+            } else if (!isLoggedIn && location.pathname === "/home") {
+                navigate("/")
             }
+        }
+        checkLoggedIn()
 
-            if(isLoggedIn && location.pathname === "/") {
-                navigate("/home")
-            }
-        };
-
-        checkLoggedIn();
-    }, [checkAuth]);
+    }, []);
 
 
   return (
