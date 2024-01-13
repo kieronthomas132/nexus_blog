@@ -48,6 +48,7 @@ const Posts = () => {
                   id={post?.$id}
                   creatorId={post?.creator?.$id}
                   post={post}
+                  profilePic={post.creator.profilePic}
                 />
               </div>
             ))}

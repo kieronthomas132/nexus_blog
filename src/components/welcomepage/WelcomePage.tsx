@@ -1,17 +1,35 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import sideImage from "../../assets/side-img.svg";
+import {useAuthContext} from "../../context/AuthContext.tsx";
 const WelcomePage = () => {
   const navigate = useNavigate();
+  const {checkAuth} = useAuthContext()
+
+
+  // useEffect(() => {
+  //   if (
+  //     localStorage.getItem("cookieFallback") === "[]" ||
+  //     localStorage.getItem("cookieFallback") === null
+  //   ) {
+  //     navigate("/");
+  //   }
+  // }, []);
 
   useEffect(() => {
-    if (
-      localStorage.getItem("cookieFallback") === "[]" ||
-      localStorage.getItem("cookieFallback") === null
-    ) {
-      navigate("/");
+    const checkLoggedIn = async () => {
+      const isLoggedIn = await checkAuth();
+
+      if(isLoggedIn) {
+        navigate("/home")
+      }
+      if(!isLoggedIn && location.pathname === "/home") {
+        navigate("/")
+      }
     }
+    checkLoggedIn()
   }, []);
+
 
   return (
     <div className="text-gray-200 h-[100vh] overflow-y-hidden overflow-x-hidden flex flex-col items-center justify-center">

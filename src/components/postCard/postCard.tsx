@@ -14,6 +14,7 @@ interface IPostCard {
   creatorId: string;
   createdAt: string;
   post: Models.Document;
+  profilePic: string
 }
 const PostCard = ({
   id,
@@ -25,6 +26,7 @@ const PostCard = ({
   creatorId,
   createdAt,
   post,
+    profilePic
 }: IPostCard) => {
   const { user } = useAuthContext();
   const navigate = useNavigate();
@@ -49,7 +51,8 @@ const PostCard = ({
             <div className="mt-auto md:flex lg:flex gap-2 items-center">
               Posted by:
               <a href={`/profile/${creatorId}`}>
-                <div className="flex">
+                <div className="flex items-center gap-2 ">
+                  <img src={profilePic} className='w-[25px] rounded-full' alt={username}/>
                   <p className="hover:text-white text-sm hover:underline">
                     {" "}
                     @{username}

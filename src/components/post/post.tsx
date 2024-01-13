@@ -53,6 +53,7 @@ const Post = () => {
                     creatorId={post.creator?.$id}
                     createdAt={post?.$createdAt}
                     post={post}
+                    profilePic={post.creator.profilePic}
                   />
                   <Comments postId={post?.$id} />
                 </div>

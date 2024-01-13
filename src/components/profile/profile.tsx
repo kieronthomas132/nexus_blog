@@ -49,6 +49,8 @@ const Profile = () => {
 
   const sortedPosts = sortPostsByDate(profile?.posts);
 
+  console.log(profile)
+
   return (
     <section className="flex h-[100vh]">
       {isProfileFetching ? (
@@ -94,6 +96,7 @@ const Profile = () => {
                     creatorId={profile.$id}
                     createdAt={post.$createdAt}
                     post={post}
+                    profilePic={profile?.profilePic}
                   />
                 ))}
             </div>
