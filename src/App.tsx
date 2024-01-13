@@ -24,6 +24,7 @@ const App = () => {
 
             if (isLoggedIn) {
                 setAuthenticated(true)
+                navigate("/home")
             } else if (!isLoggedIn && location.pathname === "/home") {
                 navigate("/")
             }
