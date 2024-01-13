@@ -9,7 +9,7 @@ const Search = () => {
     useSearchProfiles(searchQuery);
 
   return (
-    <div className="p-2.5 text-white mx-auto w-full relative justify-center">
+    <div className="p-2.5 z-20 text-white mx-auto w-full relative justify-center">
       <input
         type="text"
         placeholder="Search"

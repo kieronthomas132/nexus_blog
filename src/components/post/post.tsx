@@ -20,7 +20,8 @@ const Post = () => {
   }
 
   return (
-    <div className="flex pt-[80px] md:pt-0 h-[100%]">
+    <div className="flex pt-[80px] md:pt-0  relative overflow-y-auto"
+         style={{ maxHeight: "calc(100vh - 40px)" }}>
       {isPostFetching && !isFetchingPostError ? (
         <div className='absolute h-[100vh] top-[50%] left-[50%]'>
           <CircularProgress
@@ -36,12 +37,11 @@ const Post = () => {
       ) : (
         <>
           <Sidebar />
-          <div className="lg:w-[70%] w-full border-r border-[#303033]">
+          <div className="lg:w-[70%] w-full border-r border-[#303033]"
+               >
             {post ? (
               <div
-                className="w-full relative overflow-x-hidden "
-                style={{ maxHeight: "calc(100vh - 20px)" }}
-              >
+                className="w-full">
                 <div className=" h-full lg:pt-[100px] w-[90%] mx-auto gap-4 flex flex-col">
                   <PostCard
                     id={post?.$id}

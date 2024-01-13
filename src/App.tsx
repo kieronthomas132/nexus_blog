@@ -34,7 +34,7 @@ const App = () => {
 
 
   return (
-      <div className="bg-[#19191C] text-white h-[100%] lg:h-[100vh] relative">
+      <div className="bg-[#19191C] text-white h-[100vh] relative">
           {cookieFallback === "[]" || cookieFallback === null ? (
               <Routes>
                   <Route path="/" element={<WelcomePage />} />
@@ -43,7 +43,7 @@ const App = () => {
               </Routes>
           ) : (
               <>
-                  <div className='md:hidden  z-20 w-[100%] mx-auto fixed  bg-[#19191C] '>
+                  <div className='md:hidden z-20 w-[100%] mx-auto fixed bg-[#19191C]'>
                   <Search/>
                   </div>
                   <Routes>
