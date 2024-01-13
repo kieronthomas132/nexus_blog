@@ -35,7 +35,7 @@ const PostCard = ({
           <div className="lg:flex lg:flex-row flex flex-col justify-between">
             <div className=" flex flex-col lg:items-start items-center  w-full">
               <h1 className="text-[25px] font-[500]">{title}</h1>
-              <h2 className={`mt-[20px] font-[400] w-[90%] ${location.pathname === "/home" ? "line-clamp-5" : ""} `}>{content}</h2>
+              <h2 className={`mt-[20px] font-[400] w-[90%] ${location.pathname.includes("/home") || location.pathname.includes("/profile") ? "line-clamp-5" : ""} `}>{content}</h2>
             </div>
             <div className="lg:w-[30%] flex mt-[20px] lg:mt-0 items-center justify-center text-center">
               <img

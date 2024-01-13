@@ -33,7 +33,7 @@ export const createUserAccount = async (user: INewUser) => {
     );
 
     if (!newAccount) {
-      throw new Error("Failed to create a new account");
+      new Error("Failed to create a new account");
     }
 
     const avatar = avatars.getInitials(user.name);
@@ -146,7 +146,7 @@ export const updateUsername = async (profileId: string, username: string) => {
     const exists = profiles.documents.find((user) => user.username === username);
 
     if (exists) {
-      throw new Error("Username already exists");
+       new Error("Username already exists");
     }
 
     const profile = await databases.updateDocument(
@@ -157,7 +157,7 @@ export const updateUsername = async (profileId: string, username: string) => {
     );
 
     if (!profile) {
-      throw new Error("Could not update username");
+       new Error("Could not update username");
     }
 
     return true;
@@ -455,13 +455,9 @@ export const getProfiles = async () => {
   try{
     const profiles = await databases.listDocuments(appwriteConfig.DATABASE_ID, appwriteConfig.USERS_COLLECTION_ID)
 
-    if(!profiles) {
-      throw Error("Could not list profiles")
-    }
-
     return profiles.documents
   }catch (err) {
-    console.log(err)
+    throw Error
   }
 }
 

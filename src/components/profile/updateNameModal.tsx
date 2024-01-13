@@ -24,7 +24,6 @@ const UpdateNameModal = ({ isOpen, onOpenChange, profileId }: IModal) => {
 
       if (!newName) {
         setFormError("Failed to update bio.");
-        throw Error();
       }
 
       onClose();
