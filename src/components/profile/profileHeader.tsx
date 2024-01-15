@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { CiEdit } from "react-icons/ci";
 import { useAuthContext } from "../../context/AuthContext.tsx";
-import { useUpdateProfilePic } from "../../lib/react-query/queries&Mutations.tsx";
+import {useUpdateProfilePic} from "../../lib/react-query/queries&Mutations.tsx";
 import { Models } from "appwrite";
-import { CircularProgress } from "@nextui-org/react";
+import {CircularProgress} from "@nextui-org/react";
+
 
 const ProfileHeader = ({
   profile,
@@ -22,7 +23,6 @@ const ProfileHeader = ({
 
   const { mutateAsync: updateProfilePic, isPending: isUpdatingProfilePic } =
     useUpdateProfilePic();
-
   const handleProfilePic = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file: File | null = e.target.files ? e.target.files[0] : null;
 
@@ -41,7 +41,7 @@ const ProfileHeader = ({
         >
           <img
             src={profile?.profilePic}
-            className="rounded-full object-cover w-[80%] h-[95%] cursor-pointer"
+            className="rounded-full object-cover w-[90%] cursor-pointer"
             alt={profile?.username}
           />
           <input
@@ -72,50 +72,18 @@ const ProfileHeader = ({
           />
         </div>
       )}
-      <span>
-        <span
-          className="flex items-center gap-2"
-          onMouseEnter={() => setHoveredName(true)}
-          onMouseLeave={() => setHoveredName(false)}
-        >
-          <div className="flex items-center gap-2">
-            <h1 className="font-[600] text-[25px] md:text-[35px]">
-              {profile?.name}
-            </h1>
-            <button
-              onClick={onNameOpen}
-              className="focus:outline-none"
-              style={{
-                visibility:
-                  profileId === user.id && hoveredName ? "visible" : "hidden",
-              }}
-            >
-              <CiEdit className="text-neutral-500 text-[20px] hover:text-white" />
-            </button>
-          </div>
-        </span>{" "}
-        <span
-          className="flex items-center gap-2"
-          onMouseEnter={() => setHoveredUsername(true)}
-          onMouseLeave={() => setHoveredUsername(false)}
-        >
-          {profile?.username && (
-            <h1 className="text-neutral-500 font-[300] text-[20px]">
-              @{profile.username}
-            </h1>
-          )}
-          <button
-            onClick={onUsernameOpen}
-            className="focus:outline-none"
-            style={{
-              visibility:
-                profileId === user.id && hoveredUsername ? "visible" : "hidden",
-            }}
-          >
-            <CiEdit className="text-neutral-500 text-[20px] hover:text-white" />
-          </button>
-        </span>
-      </span>
+      <div className='flex justify-between items-center w-full'>
+        <div>
+          <span className='flex items-center gap-2' onMouseEnter={() => setHoveredName(true)} onMouseLeave={() => setHoveredName(false)}>
+               <h1 className='font-[600] text-[25px] md:text-[35px]'>{profile?.name}</h1>
+            <button onClick={onNameOpen} className="text-neutral-500 text-[20px] hover:text-white" style={{visibility: profileId === user.id && hoveredName ? "visible" : "hidden"}} ><CiEdit/></button>
+          </span>
+          <span className='flex items-center gap-2' onMouseEnter={() => setHoveredUsername(true)} onMouseLeave={() => setHoveredUsername(false)}>
+               <h1 className='text-neutral-500 font-[300] text-[20px]'>@{profile?.username}</h1>
+            <button onClick={onUsernameOpen} className="text-neutral-500 text-[20px] hover:text-white" style={{visibility: profileId === user.id && hoveredUsername ? "visible" : "hidden"}} ><CiEdit/></button>
+          </span>
+        </div>
+      </div>
     </div>
   );
 };

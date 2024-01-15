@@ -49,7 +49,6 @@ const Profile = () => {
 
   const sortedPosts = sortPostsByDate(profile?.posts);
 
-  console.log(profile)
 
   return (
     <section className="flex h-[100vh]">

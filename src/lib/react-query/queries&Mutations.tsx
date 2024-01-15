@@ -263,6 +263,7 @@ export const useGetProfiles = () => {
     queryFn: getProfiles
   })
 }
+
 export const useGetProfileById = (profileId: string) => {
   return useQuery({
     queryKey: [QUERY_KEYS.GET_PROFILE_BY_ID],

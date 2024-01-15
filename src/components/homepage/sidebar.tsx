@@ -49,7 +49,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="w-[150px] hidden md:flex  flex-col items-center pt-[20px]  h-[100vh] border-r border-[#303033]">
+    <div className="w-[150px] hidden md:flex flex-col items-center pt-[20px] h-[100vh] border-r border-[#303033]">
       <div>
         <a href="/home">
           <img src={logo} className="w-[40px]" alt="logo" />
@@ -95,7 +95,7 @@ const Sidebar = () => {
       <div className="p-4">
         <button
           onClick={handleLogout}
-          className="bg-[#FC356D] p-2 rounded-lg text-sm border border-[#FC356D] hover:bg-transparent"
+          className="bg-[#FC356D] p-2 mb-[40px] rounded-lg text-sm border border-[#FC356D] hover:bg-transparent"
         >
           Logout
         </button>
