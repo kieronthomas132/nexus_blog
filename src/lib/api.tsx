@@ -1,11 +1,5 @@
-import {
-  account,
-  appwriteConfig,
-  avatars,
-  databases,
-  storage,
-} from "./config.tsx";
-import { ID, Query } from "appwrite";
+import {account, appwriteConfig, avatars, databases, storage,} from "./config.tsx";
+import {ID, Query} from "appwrite";
 
 export interface INewUser {
   username: string;
@@ -460,6 +454,7 @@ export const getProfiles = async () => {
     throw Error
   }
 }
+
 
 export const getProfileById = async (profileId: string) => {
   try {
