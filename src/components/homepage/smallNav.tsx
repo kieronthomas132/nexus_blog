@@ -32,7 +32,7 @@ const SmallNav = () => {
   };
 
   return (
-    <div className="fixed z-10 w-full items-center bottom-[40px] text-white md:hidden">
+    <div className="fixed z-10 w-full items-center bottom-[20px] text-white md:hidden">
       <div className="flex  w-[90%] justify-evenly items-center backdrop-blur bg-[#1E1F22]/40 mx-auto p-2 bg-[#1E1F22] rounded-lg">
         <ul className="h-[80%] items-center gap-8 flex ">
           {sidebarLinks &&
