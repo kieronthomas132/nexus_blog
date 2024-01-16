@@ -23,7 +23,6 @@ const Posts = () => {
   return (
     <div
       className="py-10 md:py-4 flex flex-col h-[100%] w-full overflow-y-auto"
-      style={{ maxHeight: "calc(100vh - 20px)" }}
     >
       <div className="flex flex-col">
         <span className=" mx-auto w-[90%]">

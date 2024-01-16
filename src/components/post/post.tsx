@@ -20,7 +20,7 @@ const Post = () => {
   }
 
   return (
-    <div className="flex pt-[80px] md:pt-0 relative overflow-y-auto">
+    <div className="flex pt-[80px] sm:pb-[] md:pt-0 relative overflow-y-auto">
       {isPostFetching && !isFetchingPostError ? (
         <div className='absolute h-[100vh] top-[50%] left-[50%]'>
           <CircularProgress
@@ -36,7 +36,7 @@ const Post = () => {
       ) : (
         <>
           <Sidebar />
-          <div className="lg:w-[70%]  w-full border-r border-[#303033] overflow-y-auto" style={{ maxHeight: "calc(100vh - 20px)" }}>
+          <div className="lg:w-[70%] w-full border-r border-[#303033] overflow-y-auto">
             {post ? (
               <div
                 className="w-full">

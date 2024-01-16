@@ -68,7 +68,6 @@ const Profile = () => {
           <Sidebar />
           <div
             className="p-4 pt-[70px] pb-[70px] md:pb-0 w-full lg:w-[80%] border-r border-[#303033] overflow-y-auto"
-            style={{ maxHeight: "calc(100vh - 40px)" }}
           >
             <ProfileHeader
               profile={profile}

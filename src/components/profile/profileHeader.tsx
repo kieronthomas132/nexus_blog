@@ -33,12 +33,12 @@ const ProfileHeader = ({
   };
 
   return (
-    <div className="lg:w-[80%] lg:justify-start w-[100%] justify-center gap-3 lg:mx-auto flex items-center relative">
-      {profileId === user.id ? (
-        <label
-          htmlFor="profileImageInput"
-          className="cursor-pointer relative lg:w-[120px]  flex items-center justify-center w-[120px] h-[100px] lg:h-[100px]"
-        >
+      <div className="lg:w-[80%] ml-[130px] w-full justify-center gap-3 mx-auto flex items-center relative">
+        {profileId === user.id ? (
+            <label
+                htmlFor="profileImageInput"
+                className="cursor-pointer relative lg:w-[120px] w-[120px] h-[100px] lg:h-[100px]"
+            >
           <img
             src={profile?.profilePic}
             className="rounded-full object-cover w-[90%] cursor-pointer"
@@ -64,7 +64,7 @@ const ProfileHeader = ({
           )}
         </label>
       ) : (
-        <div className="lg:w-[120px] w-[120px] h-[100px] lg:h-[100px]">
+        <div className="lg:w-[120px] md:w-[100%]  w-[120px] h-[100px] lg:h-[100px]">
           <img
             src={profile?.profilePic}
             className="rounded-full object-cover w-[80%] h-[100%] "

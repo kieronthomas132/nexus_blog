@@ -6,10 +6,10 @@ import SignInForm from "./components/auth/forms/signInForm.tsx";
 import Homepage from "./components/homepage/homepage.tsx";
 import Post from "./components/post/post.tsx";
 import Profile from "./components/profile/profile.tsx";
-import SmallNav from "./components/homepage/smallNav.tsx";
 import { useAuthContext } from "./context/AuthContext.tsx";
 import {useEffect} from "react";
 import Search from "./components/homepage/search.tsx";
+import SmallNav from "./components/homepage/smallNav.tsx";
 
 const App = () => {
 
@@ -30,7 +30,7 @@ const App = () => {
     }, []);
 
   return (
-      <div className="bg-[#19191C] text-white h-[100vh] relative">
+      <div className="bg-[#19191C] text-white xs:h-[100%] relative">
           {cookieFallback === "[]" || cookieFallback === null ? (
               <Routes>
                   <Route path="/" element={<WelcomePage />} />
@@ -39,15 +39,17 @@ const App = () => {
               </Routes>
           ) : (
               <>
-                  <div className='md:hidden z-20 w-[100%] mx-auto fixed bg-[#19191C]'>
+                  <div className='md:hidden flex z-20 w-[100%] mx-auto fixed bg-[#19191C]'>
+                      <div className='w-[90%]'>
                   <Search/>
+                      </div>
+                      <SmallNav/>
                   </div>
                   <Routes>
                       <Route path="/home" element={<Homepage />} />
                       <Route path="/post/:postId" element={<Post />} />
                       <Route path="/profile/:profileId" element={<Profile />} />
                   </Routes>
-               <SmallNav />
               </>
           )}
       </div>

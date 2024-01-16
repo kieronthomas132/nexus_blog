@@ -3,7 +3,7 @@ import Main from "./main.tsx";
 
 const Homepage = () => {
     return (
-        <div className='flex h-[100vh] text-white'>
+        <div className='flex h-[100vh]  text-white'>
             <Sidebar/>
             <Main/>
         </div>
