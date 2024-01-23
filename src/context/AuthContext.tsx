@@ -81,7 +81,6 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 
       return false;
     } catch (err) {
-      console.log(err);
       return false;
     } finally {
       setIsLoading(false);

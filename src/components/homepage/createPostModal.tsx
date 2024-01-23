@@ -55,7 +55,6 @@ const CreatePostModal = ({ isOpen, onOpenChange }: IModal) => {
           selectedFile,
         );
         if (response && response["$id"]) {
-          console.log(response);
           imageURL = `https://cloud.appwrite.io/v1/storage/buckets/${appwriteConfig.STORAGE_COLLECTION_ID}/files/${response["$id"]}/view?project=659c07ce2f49cc57b0d6&mode=admin`;
           imageID = response["$id"];
         }

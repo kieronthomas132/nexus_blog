@@ -18,7 +18,6 @@ const ReplyModal = ({ isOpen, onOpenChange, comment }: IModal) => {
   const handleCreateReply = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (comment?.$id) {
-      try {
         const newReply = await createReply({
           replyValue: replyValue,
           commentId: comment?.$id,
@@ -29,9 +28,6 @@ const ReplyModal = ({ isOpen, onOpenChange, comment }: IModal) => {
         onClose();
 
         return newReply;
-      } catch (err) {
-        console.log(err);
-      }
     }
   };
 

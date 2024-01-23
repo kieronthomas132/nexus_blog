@@ -17,31 +17,26 @@ export type INewPost = {
 };
 
 export const createUserAccount = async (user: INewUser) => {
-  try {
-
-    const newAccount = await account.create(
+  const newAccount = await account.create(
       ID.unique(),
       user.email,
       user.password,
       user.name,
-    );
+  );
 
-    if (!newAccount) {
-      new Error("Failed to create a new account");
-    }
-
-    const avatar = avatars.getInitials(user.name);
-
-    return saveUserToDB({
-      accountId: newAccount.$id,
-      name: newAccount.name,
-      email: newAccount.email,
-      profilePic: avatar,
-      username: user.username,
-    });
-  } catch (err) {
-    console.log(err);
+  if (!newAccount) {
+    throw new Error("Failed to create a new account");
   }
+
+  const avatar = avatars.getInitials(user.name);
+
+  return saveUserToDB({
+    accountId: newAccount.$id,
+    name: newAccount.name,
+    email: newAccount.email,
+    profilePic: avatar,
+    username: user.username,
+  });
 };
 
 export const saveUserToDB = async (user: {
@@ -51,16 +46,12 @@ export const saveUserToDB = async (user: {
   profilePic: URL;
   email: string;
 }) => {
-  try {
     return await databases.createDocument(
       appwriteConfig.DATABASE_ID,
       appwriteConfig.USERS_COLLECTION_ID,
       ID.unique(),
       user,
     );
-  } catch (err) {
-    console.log(err);
-  }
 };
 
 export const getCurrentAccount = async () => {
@@ -185,8 +176,6 @@ export const updateProfilePic = async (
   profileId: string | undefined,
   profilePicFile: File | null,
 ) => {
-  console.log(profileId, profilePicFile);
-  try {
     const storedProfilePic = await storage.createFile(
       appwriteConfig.STORAGE_COLLECTION_ID,
       ID.unique(),
@@ -204,10 +193,6 @@ export const updateProfilePic = async (
       profileId || "",
       { profilePic: getProfilePic },
     );
-  } catch (err) {
-    console.log(err);
-    throw err;
-  }
 };
 
 export const createNewPost = async (post: INewPost) => {
