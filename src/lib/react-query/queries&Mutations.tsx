@@ -185,12 +185,6 @@ export const useCreateComment = () => {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.GET_COMMENTS],
       });
-      // queryClient.invalidateQueries({
-      //   queryKey: [QUERY_KEYS.GET_RECENT_POSTS],
-      // });
-      // queryClient.invalidateQueries({
-      //   queryKey: [QUERY_KEYS.GET_POSTS],
-      // });
     },
   });
 };

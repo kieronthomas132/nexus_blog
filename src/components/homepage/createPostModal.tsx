@@ -92,7 +92,6 @@ const CreatePostModal = ({ isOpen, onOpenChange }: IModal) => {
       isOpen={isOpen}
       onOpenChange={onClose}
     >
-
       <ModalContent>
         <form onSubmit={createNewPost}>
           <ModalHeader className="flex flex-col gap-1">
