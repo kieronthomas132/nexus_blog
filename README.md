@@ -1,20 +1,50 @@
-# Nexus Blog
-A blog site that uses Appwrite, React Vite, Tailwind, Typescript and Tanstack Query. Users can create accounts, post blogs with images, update name, username, bio and profile pic as well as comment and like other posts
+# Nexus Blog Application
 
-## Tech Stack
-- ### Appwrite
+Welcome to the Nexus Blog Application repository! This application is a blog platform that allows users to create, publish, and manage their blog posts.
 
-Appwrite is an end-to-end backend service that is used to create use authentication, databases, storage, functions etc. This service allows users to create new accounts, update features such as their profile pic and bio as well as store and delete posts by users. This service also allows the storing of likes, allowing a range of users to like posts and unlike posts as well as uploading photos for other users to see. 
+## Features
 
-Appwrite also has queries, which is used in this application to order posts by descending order and to be able to search for other users and make comment on other people's post
+- **User Authentication**: Users can sign up, log in, and log out securely to access the blog platform.
+- **Create and Edit Posts**: Authenticated users can create new blog posts and edit their existing posts.
+- **Commenting System**: Visitors can leave comments on published blog posts, and authors can moderate and manage comments.
+- **Search Functionality**: The application includes a search feature to allow users to search for specific posts by keywords.
+- **Responsive Design**: The platform is responsive, ensuring a seamless user experience across devices of all sizes.
 
-- ### NextUI
+## Technologies Used
 
-NextUI is a component library that is used in this project to create components and features such as Modals and ToolTips to improve user friendliness, particulary with buttons and updating features like bio, username and name. 
+- React
+- TypeScript
+- Tailwind CSS
+- NexUI
+- Tanstack Query
+- Vite
+- Appwrite
 
-- ### Tanstack Query
+## Installation
 
-Tanstack Query is a state management that allows more ease in state management and data fetching. It is used in this project to make updating, caching and retrieving data easier and smoother. It also allows options for data management such as if there is an error with the data or when data is successful other fuctions and features can occur.
+To run this application locally, follow these steps:
+
+1. Clone this repository: `git clone [repository URL]`
+2. Navigate to the project directory: `cd nexus-blog`
+3. Install dependencies: `npm install`
+4. Start the development server: `npm run dev`
+
+## Usage
+
+To use the application, follow these steps:
+
+1. Sign up for an account or log in if you already have one.
+2. Create new blog posts by clicking on the "New Post" button.
+3. Edit your existing posts by clicking on the "Edit" button next to each post.
+4. Preview your posts before publishing them to ensure they appear as intended.
+5. Publish your posts to make them visible to others or unpublish them to make them private.
+6. Manage comments on your posts by accessing the comment moderation panel.
+7. Organize your posts by assigning tags and categories for easy navigation.
+8. Use the search feature to find specific posts by keywords.
+
+## Live Version
+
+A live version of this application is available [here](https://nexus-blog-sigma.vercel.app).
 
 ![Screenshot of the home page of Nexus blog, showing two posts by John and Jane Doe.] 
 
