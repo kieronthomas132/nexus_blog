@@ -35,7 +35,7 @@ export type INewPost = {
  * @throws {Error} If the account creation fails due to any reason.
  */
 
-export const createUserAccount = async (user: INewUser): Promise<object> => {
+export const createUserAccount = async (user: INewUser) => {
   const newAccount = await account.create(
       ID.unique(),
       user.email,
@@ -91,7 +91,7 @@ export const saveUserToDB = async (user: {
  *                 - An unexpected error occurred during data retrieval.
  */
 
-export const getCurrentAccount = async (): Promise<object | undefined> => {
+export const getCurrentAccount = async () => {
   try {
     const currentAccount = await account.get();
 
@@ -133,7 +133,7 @@ export const getCurrentAccount = async (): Promise<object | undefined> => {
 export const signInAccount = async (user: {
   email: string;
   password: string;
-}): Promise<object | undefined> => {
+}) => {
   try {
     const signInAccount = await account.createEmailSession(
       user.email,
@@ -175,7 +175,7 @@ export const logoutUser = async ()=> {
  * @throws {Error} If any of the following conditions are met:
  *                 - Failed to retrieve or update the user profile due to database or network errors.
  */
-export const updateName = async (profileId: string, name: string): Promise<object | undefined> => {
+export const updateName = async (profileId: string, name: string) => {
   try {
     const profile = await databases.updateDocument(
       appwriteConfig.DATABASE_ID,
@@ -208,7 +208,7 @@ export const updateName = async (profileId: string, name: string): Promise<objec
  *                 - Failed to retrieve or update the user profile due to database or network errors.
  */
 
-export const updateUsername = async (profileId: string, username: string): Promise<boolean> => {
+export const updateUsername = async (profileId: string, username: string) => {
   try {
     const profiles = await databases.listDocuments(
         appwriteConfig.DATABASE_ID,
@@ -283,7 +283,7 @@ export const updateBio = async (profileId: string, bio: string) => {
 export const updateProfilePic = async (
   profileId: string | undefined,
   profilePicFile: File | null,
-): Promise<object> => {
+) => {
     const storedProfilePic = await storage.createFile(
       appwriteConfig.STORAGE_COLLECTION_ID,
       ID.unique(),
@@ -326,7 +326,7 @@ export const updateProfilePic = async (
  *                            - 'comments': An array of comments associated with the post (initially empty).
  * @throws {Error} If there is an error while creating a new post (e.g., database or network error).
  */
-export const createNewPost = async (post: INewPost): Promise<object | undefined> => {
+export const createNewPost = async (post: INewPost)=> {
   try {
     const newPost = await databases.createDocument(
       appwriteConfig.DATABASE_ID,
@@ -370,7 +370,7 @@ export const createNewPost = async (post: INewPost): Promise<object | undefined>
  *                 - There is an issue with retrieving posts from the database (e.g., network or database error).
  */
 
-export const getPosts = async (): Promise<object[] | undefined> => {
+export const getPosts = async () => {
   try {
     const posts = await databases.listDocuments(
       appwriteConfig.DATABASE_ID,
@@ -407,7 +407,7 @@ export const getPosts = async (): Promise<object[] | undefined> => {
  *                            - 'comments': An array of comments associated with the post from users.
  * @throws {Error} If the specified post ID does not exist or there is an issue retrieving the post from the database.
  */
-export const getPostById = async (postId: string): Promise<object | undefined> => {
+export const getPostById = async (postId: string) => {
   try {
     const post = await databases.getDocument(
       appwriteConfig.DATABASE_ID,
@@ -432,7 +432,7 @@ export const getPostById = async (postId: string): Promise<object | undefined> =
  * @returns {Promise<object>} A Promise resolving to the deleted post document from the database upon successful deletion.
  * @throws {Error} If the specified post ID does not exist or there is an issue deleting the post from the database.
  */
-export const deletePost = async (postId: string): Promise<object | undefined> => {
+export const deletePost = async (postId: string) => {
   try {
     const deletedPost = await databases.deleteDocument(
       appwriteConfig.DATABASE_ID,
@@ -459,7 +459,7 @@ export const deletePost = async (postId: string): Promise<object | undefined> =>
  * @throws {Error} If there is an issue updating the post's 'likes' array in the database.
  */
 
-export const likePost = async (postId: string, likesArray: string[]): Promise<object | undefined> => {
+export const likePost = async (postId: string, likesArray: string[]) => {
   try {
     const likedPost = await databases.updateDocument(
       appwriteConfig.DATABASE_ID,
@@ -491,7 +491,7 @@ export const likePost = async (postId: string, likesArray: string[]): Promise<ob
  *                              - 'createdAt': The timestamp indicating when the comment was created.
  * @throws {Error} If there is an issue retrieving comments from the database (e.g., network or database error).
  */
-export const getComments = async (): Promise<object[] | undefined> => {
+export const getComments = async () => {
   try {
     const comments = await databases.listDocuments(
       appwriteConfig.DATABASE_ID,
@@ -527,7 +527,7 @@ export const createComment = async (
   postId: string,
   comment: string,
   commenter: string,
-): Promise<object | undefined> => {
+) => {
   try {
     const newComment = await databases.createDocument(
       appwriteConfig.DATABASE_ID,
@@ -558,7 +558,7 @@ export const createComment = async (
  * @returns {Promise<object>} A Promise resolving to the deleted comment document upon successful deletion.
  * @throws {Error} If there is an issue deleting the comment from the database (e.g., network or database error).
  */
-export const deleteComment = async (commentId: string): Promise<object | undefined> => {
+export const deleteComment = async (commentId: string) => {
   try {
     const comment = await databases.deleteDocument(
       appwriteConfig.DATABASE_ID,
@@ -583,7 +583,7 @@ export const deleteComment = async (commentId: string): Promise<object | undefin
  *                              Each reply document contains the relevant reply information.
  * @throws {Error} If there is an issue retrieving replies from the database (e.g., network or database error).
  */
-export const getReplies = async (): Promise<object[]> => {
+export const getReplies = async () => {
   try {
     const replies = await databases.listDocuments(
       appwriteConfig.DATABASE_ID,
@@ -615,7 +615,7 @@ export const createReply = async (
   replyValue: string,
   replier: string,
   repliedComment: string,
-): Promise<object | undefined> => {
+) => {
   try {
     const newReply = await databases.createDocument(
       appwriteConfig.DATABASE_ID,
@@ -646,7 +646,7 @@ export const createReply = async (
  * @returns {Promise<object>} A Promise resolving to the deleted reply document upon successful deletion.
  * @throws {Error} If there is an issue deleting the reply from the database (e.g., network or database error).
  */
-export const deleteReply = async (replyId: string): Promise<object | undefined> => {
+export const deleteReply = async (replyId: string) => {
   try {
     const deletedReply = await databases.deleteDocument(
       appwriteConfig.DATABASE_ID,
@@ -671,7 +671,7 @@ export const deleteReply = async (replyId: string): Promise<object | undefined> 
  *                              Each profile document contains the relevant user profile information.
  * @throws {Error} If there is an issue retrieving user profiles from the database (e.g., network or database error).
  */
-export const getProfiles = async (): Promise<object[]> => {
+export const getProfiles = async () => {
   try{
     const profiles = await databases.listDocuments(appwriteConfig.DATABASE_ID, appwriteConfig.USERS_COLLECTION_ID)
 
@@ -690,7 +690,7 @@ export const getProfiles = async (): Promise<object[]> => {
  * @throws {Error} If there is an issue retrieving the user profile from the database (e.g., network or database error).
  */
 
-export const getProfileById = async (profileId: string): Promise<object | undefined> => {
+export const getProfileById = async (profileId: string) => {
   try {
     const profile = await databases.getDocument(
       appwriteConfig.DATABASE_ID,
@@ -717,7 +717,7 @@ export const getProfileById = async (profileId: string): Promise<object | undefi
  * @throws {Error} If there is an issue searching for user profiles in the database (e.g., network or database error).
  */
 
-export const searchProfiles = async (searchQuery: string): Promise<object[] | undefined> => {
+export const searchProfiles = async (searchQuery: string) => {
   try {
     const profiles = await databases.listDocuments(
       appwriteConfig.DATABASE_ID,
