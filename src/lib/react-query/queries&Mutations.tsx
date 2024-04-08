@@ -24,30 +24,52 @@ import {
 } from "../api.tsx";
 import { QUERY_KEYS } from "./queryKeys.tsx";
 
-export const useCreateNewAccount = () => {
+
+/**
+ * Custom hook for creating a new user account.
+ * Uses react-query's useMutation hook to handle asynchronous createUserAccount operation.
+ * @returns {Object} An object containing the useMutation hook result for creating a new account.
+ */
+export const useCreateNewAccount = (): object => {
   return useMutation({
     mutationFn: (user: INewUser) => createUserAccount(user),
   });
 };
 
-export const useSignInAccount = () => {
+/**
+ * Custom hook for signing in to a user account.
+ * Uses react-query's useMutation hook to handle asynchronous signInAccount operation.
+ * @returns {Object} An object containing the useMutation hook result for signing in to an account.
+ */
+export const useSignInAccount = (): object => {
   return useMutation({
     mutationFn: (user: { email: string; password: string }) =>
       signInAccount(user),
   });
 };
 
-export const useLogoutUser = () => {
+/**
+ * Custom hook for logging out the current user.
+ * Uses react-query's useMutation hook to handle asynchronous logoutUser operation.
+ * @returns {Object} An object containing the useMutation hook result for logging out the user.
+ */
+export const useLogoutUser = (): object => {
   return useMutation({
     mutationFn: logoutUser,
   });
 };
 
-export const useUpdateName = () => {
+/**
+ * Custom hook for updating the name of a user profile.
+ * Uses react-query's useMutation hook to handle asynchronous updateName operation.
+ * @returns {Object} An object containing the useMutation hook result for updating the user profile name.
+ */
+export const useUpdateName = (): object => {
   const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: ({ profileId, name }: { profileId: string; name: string }) =>
-      updateName(profileId, name),
+        updateName(profileId, name),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.GET_PROFILE_BY_ID],
@@ -56,8 +78,14 @@ export const useUpdateName = () => {
   });
 };
 
-export const useUpdateUsername = () => {
+/**
+ * Custom hook for updating the username of a user profile.
+ * Uses react-query's useMutation hook to handle asynchronous updateUsername operation.
+ * @returns {Object} An object containing the useMutation hook result for updating the user profile username.
+ */
+export const useUpdateUsername = (): object => {
   const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: async ({ profileId, username }: { profileId: string; username: string }) => {
       const success = await updateUsername(profileId, username);
@@ -74,7 +102,13 @@ export const useUpdateUsername = () => {
   });
 };
 
-export const useUpdateBio = () => {
+/**
+ * Custom hook for updating the bio of a user profile.
+ * Uses react-query's useMutation hook to handle asynchronous updateBio operation.
+ * @returns {Object} An object containing the useMutation hook result for updating the user profile bio.
+ */
+
+export const useUpdateBio = (): object => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: ({ profileId, bio }: { profileId: string; bio: string }) =>
@@ -87,7 +121,13 @@ export const useUpdateBio = () => {
   });
 };
 
-export const useUpdateProfilePic = () => {
+/**
+ * Custom hook for updating the profile picture of a user profile.
+ * Uses react-query's useMutation hook to handle asynchronous updateProfilePic operation.
+ * @returns {Object} An object containing the useMutation hook result for updating the user profile picture.
+ */
+
+export const useUpdateProfilePic = (): object => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -105,7 +145,14 @@ export const useUpdateProfilePic = () => {
     }
   });
 };
-export const useCreateNewPost = () => {
+
+/**
+ * Custom hook for creating a new post.
+ * Uses react-query's useMutation hook to handle asynchronous createNewPost operation.
+ * @returns {Object} An object containing the useMutation hook result for creating a new post.
+ */
+
+export const useCreateNewPost = (): object => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (post: INewPost) => createNewPost(post),
@@ -120,7 +167,13 @@ export const useCreateNewPost = () => {
   });
 };
 
-export const useDeletePost = () => {
+
+/**
+ * Custom hook for deleting a post.
+ * Uses react-query's useMutation hook to handle asynchronous deletePost operation.
+ * @returns {Object} An object containing the useMutation hook result for deleting a post.
+ */
+export const useDeletePost = (): object => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (postId: string) => deletePost(postId),
@@ -135,20 +188,39 @@ export const useDeletePost = () => {
   });
 };
 
-export const useGetPosts = () => {
+/**
+ * Custom hook for fetching all posts.
+ * Uses react-query's useQuery hook to handle asynchronous getPosts operation.
+ * @returns {Object} An object containing the useQuery hook result for fetching all posts.
+ */
+
+export const useGetPosts = (): object => {
   return useQuery({
     queryFn: getPosts,
     queryKey: [QUERY_KEYS.GET_POSTS],
   });
 };
 
-export const useGetPostById = (postId: string) => {
+/**
+ * Custom hook for fetching a post by its ID.
+ * Uses react-query's useQuery hook to handle asynchronous getPostById operation.
+ * @param {string} postId The ID of the post to fetch.
+ * @returns {Object} An object containing the useQuery hook result for fetching a post by its ID.
+ */
+
+export const useGetPostById = (postId: string): object => {
   return useQuery({
     queryKey: [QUERY_KEYS.GET_POST_BY_ID],
     queryFn: () => getPostById(postId),
   });
 };
-export const useLikePost = () => {
+
+/**
+ * Custom hook for liking a post.
+ * Uses react-query's useMutation hook to handle asynchronous likePost operation.
+ * @returns {Object} An object containing the useMutation hook result for liking a post.
+ */
+export const useLikePost = (): object => {
   return useMutation({
     mutationFn: ({
       postId,
@@ -160,13 +232,24 @@ export const useLikePost = () => {
   });
 };
 
-export const useGetComments = () => {
+/**
+ * Custom hook for fetching comments.
+ * Uses react-query's useQuery hook to handle asynchronous getComments operation.
+ * @returns {Object} An object containing the useQuery hook result for fetching comments.
+ */
+export const useGetComments = (): object => {
   return useQuery({
     queryKey: [QUERY_KEYS.GET_COMMENTS],
     queryFn: getComments,
   });
 };
-export const useCreateComment = () => {
+
+/**
+ * Custom hook for creating a new comment on a post.
+ * Uses react-query's useMutation hook to handle asynchronous createComment operation.
+ * @returns {Object} An object containing the useMutation hook result for creating a comment.
+ */
+export const useCreateComment = (): object => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: ({
@@ -189,7 +272,12 @@ export const useCreateComment = () => {
   });
 };
 
-export const useDeleteComment = () => {
+/**
+ * Custom hook for deleting a comment.
+ * Uses react-query's useMutation hook to handle asynchronous deleteComment operation.
+ * @returns {Object} An object containing the useMutation hook result for deleting a comment.
+ */
+export const useDeleteComment = (): object => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (commentId: string) => deleteComment(commentId),
@@ -204,14 +292,24 @@ export const useDeleteComment = () => {
   });
 };
 
-export const useGetReplies = () => {
+/**
+ * Custom hook for fetching replies.
+ * Uses react-query's useQuery hook to handle asynchronous getReplies operation.
+ * @returns {Object} An object containing the useQuery hook result for fetching replies.
+ */
+export const useGetReplies = (): object => {
   return useQuery({
     queryKey: [QUERY_KEYS.GET_REPLIES],
     queryFn: getReplies,
   });
 };
 
-export const useCreateReply = () => {
+/**
+ * Custom hook for creating a new reply to a comment.
+ * Uses react-query's useMutation hook to handle asynchronous createReply operation.
+ * @returns {Object} An object containing the useMutation hook result for creating a reply.
+ */
+export const useCreateReply = (): object => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: ({
@@ -236,7 +334,12 @@ export const useCreateReply = () => {
   });
 };
 
-export const useDeleteReply = () => {
+/**
+ * Custom hook for deleting a reply.
+ * Uses react-query's useMutation hook to handle asynchronous deleteReply operation.
+ * @returns {Object} An object containing the useMutation hook result for deleting a reply.
+ */
+export const useDeleteReply = (): object => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (replyId: string) => deleteReply(replyId),
@@ -251,21 +354,39 @@ export const useDeleteReply = () => {
   });
 };
 
-export const useGetProfiles = () => {
+/**
+ * Custom hook for fetching profiles.
+ * Uses react-query's useQuery hook to handle asynchronous getProfiles operation.
+ * @returns {Object} An object containing the useQuery hook result for fetching profiles.
+ */
+export const useGetProfiles = (): object => {
   return useQuery({
     queryKey: [QUERY_KEYS.GET_PROFILES],
     queryFn: getProfiles
   })
 }
-
-export const useGetProfileById = (profileId: string) => {
+/**
+ * Custom hook for fetching a user profile by ID.
+ * Uses react-query's useQuery hook to handle asynchronous profile retrieval.
+ * @param {string} profileId The ID of the profile to fetch.
+ * @returns {Object} An object containing the useQuery hook result for fetching a profile by ID.
+ *                   The object includes properties such as `data`, `isLoading`, `isError`, etc.
+ */
+export const useGetProfileById = (profileId: string): object => {
   return useQuery({
     queryKey: [QUERY_KEYS.GET_PROFILE_BY_ID],
     queryFn: () => getProfileById(profileId),
   });
 };
 
-export const useSearchProfiles = (searchQuery: string) => {
+/**
+ * Custom hook for searching user profiles based on a search query.
+ * Uses react-query's useQuery hook to handle asynchronous profile search.
+ * @param {string} searchQuery The search query used to filter profiles.
+ * @returns {Object} An object containing the useQuery hook result for searching profiles.
+ *                   The object includes properties such as `data`, `isLoading`, `isError`, etc.
+ */
+export const useSearchProfiles = (searchQuery: string): object => {
   return useQuery({
     queryKey: [QUERY_KEYS.SEARCH_PROFILES, searchQuery],
     queryFn: () => searchProfiles(searchQuery),
