@@ -2,19 +2,22 @@ import logo from "../../assets/nexus_logo.svg";
 import { useAuthContext } from "../../context/AuthContext.tsx";
 import { AiOutlineHome } from "react-icons/ai";
 import { FaRegUser } from "react-icons/fa";
-import { Tooltip, useDisclosure } from "@nextui-org/react";
+import {Button, CircularProgress, Tooltip, useDisclosure} from "@nextui-org/react";
 import { IoCreateOutline } from "react-icons/io5";
 import { useNavigate } from "react-router";
 import CreatePostModal from "./createPostModal.tsx";
+import { FaTrash } from "react-icons/fa";
 
-import { useLogoutUser } from "../../lib/react-query/queries&Mutations.tsx";
+import {useDeleteAccount, useLogoutUser} from "../../lib/react-query/queries&Mutations.tsx";
 import { useActiveLinkContext } from "../../context/activeLinkContext.tsx";
 
 const Sidebar = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
+
   const { user } = useAuthContext();
   const { mutateAsync: logoutUser } = useLogoutUser();
+  const {mutateAsync: deleteAccount, isPending: isDeletingAccount} = useDeleteAccount()
   const { activeLink, setActiveLink } = useActiveLinkContext();
 
   const navigate = useNavigate();
@@ -47,6 +50,22 @@ const Sidebar = () => {
       return loggedOut;
     }
   };
+
+  const handleDeleteAccount = async () => {
+    const cookieFallback = localStorage.getItem("cookieFallback");
+    if(cookieFallback) {
+      const deletedAccount = await deleteAccount(user.id);
+      localStorage.removeItem("cookieFallback")
+      navigate("/");
+      return deletedAccount;
+    }
+  }
+
+  if(isDeletingAccount) {
+    return <div className='absolute top-[40%] left-[45%]'>
+      <CircularProgress  classNames={{svg: 'text-white w-36 h-36',indicator: "stroke-white", track: "stroke-white/0"}}/>
+    </div>
+  }
 
   return (
     <div className="w-[150px] hidden md:flex flex-col items-center pt-[20px] h-[100vh] border-r border-[#303033]">
@@ -92,6 +111,11 @@ const Sidebar = () => {
         </div>
       </div>
       <CreatePostModal isOpen={isOpen} onOpenChange={onOpenChange} />
+      {user && user.id &&   <Tooltip content='Delete Account' className='bg-[#FC356D] text-white'>
+        <Button onClick={handleDeleteAccount} isIconOnly={true} className='bg-transparent text-[20px] text-white'>
+          <FaTrash/>
+        </Button>
+      </Tooltip>}
       <div className="p-4">
         <button
           onClick={handleLogout}

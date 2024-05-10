@@ -3,7 +3,7 @@ import {
   createComment,
   createNewPost,
   createReply,
-  createUserAccount,
+  createUserAccount, deleteAccount,
   deleteComment,
   deletePost,
   deleteReply,
@@ -58,6 +58,13 @@ export const useLogoutUser = () => {
     mutationFn: logoutUser,
   });
 };
+
+
+export const useDeleteAccount = () => {
+  return useMutation({
+    mutationFn: (userId: string) => deleteAccount(userId)
+  })
+}
 
 /**
  * Custom hook for updating the name of a user profile.

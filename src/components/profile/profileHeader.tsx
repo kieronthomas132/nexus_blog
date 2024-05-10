@@ -67,7 +67,7 @@ const ProfileHeader = ({
         <div className="lg:w-[120px] md:w-[100%]  w-[120px] h-[100px] lg:h-[100px]">
           <img
             src={profile?.profilePic}
-            className="rounded-full object-cover w-[80%] h-[100%] "
+            className="rounded-full object-cover w-[80%] h-auto "
             alt={profile?.username}
           />
         </div>

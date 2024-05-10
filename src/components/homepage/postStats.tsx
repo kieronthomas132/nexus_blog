@@ -73,10 +73,12 @@ const PostStats = ({ post, userId, creatorId }: PostStatsProps) => {
           </button>
         </Tooltip>
         <p className="text-sm text-neutral-500">{likes?.length}</p>
-        <span className="text-sm text-neutral-500 flex items-center gap-2">
+        <Tooltip className="bg-[#FC356D] text-white" content="comment">
+        <button className="text-sm text-neutral-500 flex items-center gap-2">
           <FaRegComment />
           <p>{post?.comments?.length}</p>
-        </span>
+        </button>
+        </Tooltip>
         {!isDeletingPost ? (
           <div className="flex items-center">
             {creatorId === userId && (

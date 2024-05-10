@@ -150,6 +150,18 @@ export const signInAccount = async (user: {
   }
 };
 
+export const deleteAccount = async (userId: string) => {
+  try{
+    const account =  databases.deleteDocument(appwriteConfig.DATABASE_ID, appwriteConfig.USERS_COLLECTION_ID, userId)
+
+    if(!account) {
+      new Error("Could not delete account");
+    }
+  }catch (err) {
+    console.log(err)
+  }
+}
+
 /**
  * Logs out the current user by removing the active session.
  *
